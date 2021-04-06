@@ -4,7 +4,7 @@ Fantasy League for IPL
 # Scoring Rules
 
 
-##Points Table
+## Points Table
 
 
 ## Change Log
