@@ -1,5 +1,7 @@
 from files import readFile, writeFile, appendFile
 from scrapper import get_match
+from os import listdir
+from os.path import isfile, join
 
 class Matches():
     def __init__(self,urls):
@@ -15,13 +17,18 @@ class Matches():
                 teams.append((url["url"].split("/")[5]).split("-")[0])
                 teams.append((url["url"].split("/")[5]).split("-")[2])
                 match_data=get_match(url["url"],teams)
-                status=writeFile("../resources/matches1/"+match_id+"_"+teams[0]+"_"+teams[1]+"_"+".json",match_data)
+                status=writeFile("../resources/matches/"+match_id+"_"+teams[0]+"_"+teams[1]+".json",match_data)
                 if status=="Successful":
                     url_statuses=readFile("../resources/url.json")
                     for url_status in url_statuses:
                         if url_status['id']==url['id']:
                             url_status['completed']="Yes"
                     writeFile("../resources/url.json",url_statuses)
+
+    def get_all_matches(self):
+        matches = [f for f in listdir("../resources/matches") if isfile(join("../resources/matches", f))]
+        return matches
+
 
 
 
