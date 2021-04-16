@@ -15,7 +15,7 @@ def get_match(url):
       current_innings=get_innings(Soup, "innings_"+str(i+1))
       innings.append(current_innings)
       batting.append(get_batting(innings[i][0]))
-      bowling.append(get_batting(innings[i][1]))
+      bowling.append(get_bowling(innings[i][1]))
       result.append([batting,bowling])
   return result
 
@@ -26,7 +26,7 @@ def get_innings(Soup,Innings):
     Inning_batting = Inning.find_all('div',class_="cb-col cb-col-100 cb-ltst-wgt-hdr")[0]
     Inning_bowling = Inning.find_all('div',class_="cb-col cb-col-100 cb-ltst-wgt-hdr")[1]
     Inning_batting = Inning_batting.find_all('div',class_="cb-col cb-col-100 cb-scrd-itms")
-    Inning_bowling = Inning_bowling.find_all('div',class_="cb-col cb-col-100 cb-scrd-itms ")
+    Inning_bowling = Inning_bowling.find_all('div',class_="cb-col cb-col-100 cb-scrd-itms")
     Inning_info.append(Inning_batting)
     Inning_info.append(Inning_bowling)
     return Inning_info
@@ -89,4 +89,4 @@ def get_bowling(Inning_bowling):
     return bowling_info
 
 url = "https://www.cricbuzz.com/live-cricket-scorecard/35632/rr-vs-dc-7th-match-indian-premier-league-2021"
-pprint(get_match(url))
+print(get_match(url))
