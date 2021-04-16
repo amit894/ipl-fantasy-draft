@@ -1,4 +1,8 @@
 import requests
+import flask
+import json
+import flask
+import re
 from bs4 import BeautifulSoup
 import json
 from pprint import pprint
@@ -7,17 +11,20 @@ def get_match(url):
 
   innings=[]
   result=[]
-  batting=[]
-  bowling=[]
+  fielding=[]
   Scorecard = requests.get(url).text
   Soup = BeautifulSoup(Scorecard,"html.parser")
   for i in range(2):
+      current_innings=[]
+      batting=[]
+      bowling=[]
       current_innings=get_innings(Soup, "innings_"+str(i+1))
       innings.append(current_innings)
       batting.append(get_batting(innings[i][0]))
       bowling.append(get_bowling(innings[i][1]))
-      result.append([batting,bowling])
-  return result
+      fielding.append(get_fielding(batting))
+      result.append([batting,bowling,fielding])
+  return "Amit"
 
 
 def get_innings(Soup,Innings):
@@ -87,6 +94,21 @@ def get_bowling(Inning_bowling):
             if len(bowler) > 0:
                 bowling_info.append(bowler)
     return bowling_info
+
+def get_fielding(Inning_batting):
+    fielding_info=[]
+    for i in range(len(Inning_batting[0])):
+        if 'out_by' in Inning_batting[0][i]:
+            dismissal=Inning_batting[0][i]['out_by']
+        if dismissal.find("c and b") == 0:
+            print((dismissal.split("c and b")[1].strip()))
+        elif dismissal.find("c") == 0:
+            print((dismissal.split("c ")[1].split("b ")[0].strip()))
+        if dismissal.find("st") == 0:
+            print((dismissal.split("st ")[1].split("b ")[0].strip()))
+        if dismissal.find("run out") == 0:
+            print(([x.strip() for x in dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")]))
+
 
 url = "https://www.cricbuzz.com/live-cricket-scorecard/35632/rr-vs-dc-7th-match-indian-premier-league-2021"
 print(get_match(url))
