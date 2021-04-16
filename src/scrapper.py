@@ -7,11 +7,12 @@ from bs4 import BeautifulSoup
 import json
 from pprint import pprint
 from collections import Counter
+from files import readFile, writeFile
 
 def get_match(url):
 
   innings=[]
-  result=[]
+  result={}
   fielding=[]
   Scorecard = requests.get(url).text
   Soup = BeautifulSoup(Scorecard,"html.parser")
@@ -24,7 +25,9 @@ def get_match(url):
       batting.append(get_batting(innings[i][0]))
       bowling.append(get_bowling(innings[i][1]))
       fielding.append(get_fielding(batting))
-      result.append([batting,bowling,fielding])
+      result["innings_"+str(i+1)+"_batting"]=batting
+      result["innings_"+str(i+1)+"_bowling"]=bowling
+      result["innings_"+str(i+1)+"_fielding"]=fielding
   return result
 
 
@@ -118,4 +121,13 @@ def get_fielding(Inning_batting):
 
 
 url = "https://www.cricbuzz.com/live-cricket-scorecard/35632/rr-vs-dc-7th-match-indian-premier-league-2021"
-print(get_match(url))
+data=get_match(url)
+x=readFile("../../resources/matches/test.json")
+for i in x:
+    for j in range(2):
+        print("DeLimiter")
+        print(i["innings_"+str(j+1)+"_batting"])
+        print("DeLimiter")
+        print(i["innings_"+str(j+1)+"_bowling"])
+        print("DeLimiter")
+        print(i["innings_"+str(j+1)+"_fielding"])
