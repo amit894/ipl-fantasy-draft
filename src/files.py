@@ -2,7 +2,6 @@ import json
 
 def readFile(fileName):
     try:
-        print(fileName)
         f1=open(fileName,'r')
         output=json.load(f1)
         f1.close()

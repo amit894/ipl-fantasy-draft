@@ -13,13 +13,13 @@ def get_match(url,teams):
 
   innings=[]
   result={}
-  fielding=[]
   Scorecard = requests.get(url).text
   Soup = BeautifulSoup(Scorecard,"html.parser")
   for i in range(2):
       current_innings=[]
       batting=[]
       bowling=[]
+      fielding=[]
       current_innings=get_innings(Soup, "innings_"+str(i+1))
       innings.append(current_innings)
       batting.append(get_batting(innings[i][0]))
