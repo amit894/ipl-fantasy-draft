@@ -6,6 +6,7 @@ import re
 from bs4 import BeautifulSoup
 import json
 from pprint import pprint
+from collections import Counter
 
 def get_match(url):
 
@@ -24,7 +25,7 @@ def get_match(url):
       bowling.append(get_bowling(innings[i][1]))
       fielding.append(get_fielding(batting))
       result.append([batting,bowling,fielding])
-  return "Amit"
+  return result
 
 
 def get_innings(Soup,Innings):
@@ -96,18 +97,24 @@ def get_bowling(Inning_bowling):
     return bowling_info
 
 def get_fielding(Inning_batting):
-    fielding_info=[]
+    fielding_info={}
+    fielders=[]
     for i in range(len(Inning_batting[0])):
+        mode=''
         if 'out_by' in Inning_batting[0][i]:
             dismissal=Inning_batting[0][i]['out_by']
         if dismissal.find("c and b") == 0:
-            print((dismissal.split("c and b")[1].strip()))
+            fielders.append(dismissal.split("c and b")[1].strip())
         elif dismissal.find("c") == 0:
-            print((dismissal.split("c ")[1].split("b ")[0].strip()))
+            fielders.append(dismissal.split("c ")[1].split("b ")[0].strip())
         if dismissal.find("st") == 0:
-            print((dismissal.split("st ")[1].split("b ")[0].strip()))
+            fielders.append(dismissal.split("st ")[1].split("b ")[0].strip())
         if dismissal.find("run out") == 0:
-            print(([x.strip() for x in dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")]))
+            fielders.extend([x.strip() for x in dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")])
+        if dismissal.find("sub (") != -1:
+                del fielders[-1]
+    fielding_info=Counter(fielders)
+    return(fielding_info)
 
 
 url = "https://www.cricbuzz.com/live-cricket-scorecard/35632/rr-vs-dc-7th-match-indian-premier-league-2021"
