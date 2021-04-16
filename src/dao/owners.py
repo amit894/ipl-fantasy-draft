@@ -1,7 +1,3 @@
-import flask
-from flask import request,jsonify
-import json
-
 class Owners():
     def __init__(self,name,id):
         self.name=name
@@ -14,8 +10,8 @@ class Owners():
             f1.close()
             return players
         except:
-            return ("Error reading from file")
             f1.close()
+            return ("Error reading from file")
 
 
 O1=Owners("ahuja",1)
