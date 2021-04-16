@@ -9,7 +9,7 @@ from pprint import pprint
 from collections import Counter
 from files import readFile, writeFile
 
-def get_match(url):
+def get_match(url,teams):
 
   innings=[]
   result={}
@@ -25,9 +25,9 @@ def get_match(url):
       batting.append(get_batting(innings[i][0]))
       bowling.append(get_bowling(innings[i][1]))
       fielding.append(get_fielding(batting))
-      result["innings_"+str(i+1)+"_batting"]=batting
-      result["innings_"+str(i+1)+"_bowling"]=bowling
-      result["innings_"+str(i+1)+"_fielding"]=fielding
+      result[teams[i]+"_innings_"+str(i+1)+"_batting"]=batting
+      result[teams[1-i]+"_innings_"+str(i+1)+"_bowling"]=bowling
+      result[teams[1-i]+"_innings_"+str(i+1)+"_fielding"]=fielding
   return result
 
 
