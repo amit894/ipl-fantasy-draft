@@ -9,9 +9,12 @@ class Matches():
         for url in self.urls:
             match_id=''
             data=[]
+            teams=[]
             if url["completed"]=="No":
                 match_id=url["url"].split("/")[4]
-                match_data=get_match(url["url"])
+                teams.append((url["url"].split("/")[5]).split("-")[0])
+                teams.append((url["url"].split("/")[5]).split("-")[2])
+                match_data=get_match(url["url"],teams)
                 status=writeFile("../resources/matches/"+match_id+".json",match_data)
                 if status=="Successful":
                     url_statuses=readFile("../resources/url.json")
