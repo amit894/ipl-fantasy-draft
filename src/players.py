@@ -1,6 +1,8 @@
 from os import listdir
 from os.path import isfile, join
 from matches import Matches
+from files import readFile, writeFile, appendFile
+
 
 class Players(Matches):
     def __init__(self,teams):
@@ -18,7 +20,13 @@ class Players(Matches):
 
     def get_stats_all_teams(self):
         for key in self.overall_matches:
-            print(self.overall_matches[key])
+            team_data=[]
+            for match_file in self.overall_matches[key]:
+                match_data=readFile("../resources/matches/"+match_file)
+                for key1 in match_data:
+                    if (key1.find(key.split('.')[0])>=0):
+                        team_data.append(match_data[key1])
+            writeFile("../resources/teams/"+key, team_data)
 
 teams = [f for f in listdir("../resources/teams") if isfile(join("../resources/teams", f))]
 P1 = Players(teams)

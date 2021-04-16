@@ -35,6 +35,3 @@ class Matches():
 urls=readFile("../resources/url.json")
 M1=Matches(urls)
 M1.update_match_score()
-
-# x=readFile("../resources/matches/35612.json")
-# print(x[0])
