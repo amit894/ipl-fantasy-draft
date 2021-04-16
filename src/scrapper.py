@@ -118,16 +118,3 @@ def get_fielding(Inning_batting):
                 del fielders[-1]
     fielding_info=Counter(fielders)
     return(fielding_info)
-
-
-url = "https://www.cricbuzz.com/live-cricket-scorecard/35632/rr-vs-dc-7th-match-indian-premier-league-2021"
-data=get_match(url)
-x=readFile("../../resources/matches/test.json")
-for i in x:
-    for j in range(2):
-        print("DeLimiter")
-        print(i["innings_"+str(j+1)+"_batting"])
-        print("DeLimiter")
-        print(i["innings_"+str(j+1)+"_bowling"])
-        print("DeLimiter")
-        print(i["innings_"+str(j+1)+"_fielding"])
