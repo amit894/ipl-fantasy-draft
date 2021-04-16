@@ -10,7 +10,6 @@ class Owners():
             f1.close()
             return players
         except:
-            f1.close()
             return ("Error reading from file")
 
 
