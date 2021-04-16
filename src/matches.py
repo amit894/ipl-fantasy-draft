@@ -17,7 +17,7 @@ class Matches():
                 teams.append((url["url"].split("/")[5]).split("-")[0])
                 teams.append((url["url"].split("/")[5]).split("-")[2])
                 match_data=get_match(url["url"],teams)
-                status=writeFile("../resources/matches/"+match_id+"_"+teams[0]+"_"+teams[1]+".json",match_data)
+                status=writeFile("../resources/matches/"+match_id+"-"+teams[0]+"-"+teams[1]+".json",match_data)
                 if status=="Successful":
                     url_statuses=readFile("../resources/url.json")
                     for url_status in url_statuses:
