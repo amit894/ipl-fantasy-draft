@@ -4,7 +4,6 @@ def readFile(fileName):
     try:
         print(fileName)
         f1=open(fileName,'r')
-        print(f1)
         output=json.load(f1)
         f1.close()
         return output
@@ -13,6 +12,15 @@ def readFile(fileName):
 
 
 def writeFile(fileName,data):
+    try:
+        f2=open(fileName,'w')
+        json.dump(data,f2)
+        f2.close()
+        return ("Successful")
+    except:
+        return ("Written to file failed")
+
+def appendFile(fileName,data):
     existing_content=[]
     try:
         existing_content=readFile(fileName)
