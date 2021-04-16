@@ -1,0 +1,76 @@
+[{
+		"id": 0,
+		"player_name": "KL Rahul",
+		"team_name": "PK"
+	},
+	{
+		"id": 1,
+		"player_name": "B Stokes",
+		"team_name": "RR"
+	},
+	{
+		"id": 3,
+		"player_name": "M Dhoni",
+		"team_name": "CSK"
+	},
+	{
+		"id": 4,
+		"player_name": "A Russell",
+		"team_name": "KKR"
+	},
+	{
+		"id": 5,
+		"player_name": "T Boult",
+		"team_name": "MI"
+	},
+	{
+		"id": 6,
+		"player_name": "J Bairstow",
+		"team_name": "SRH"
+	},
+	{
+		"id": 7,
+		"player_name": "M Shami",
+		"team_name": "PK"
+	},
+	{
+		"id": 8,
+		"player_name": "C Gayle",
+		"team_name": "PK"
+	},
+	{
+		"id": 9,
+		"player_name": "P Garg",
+		"team_name": "RR"
+	},
+	{
+		"id": 10,
+		"player_name": "L Ngidi",
+		"team_name": "CSK"
+	},
+	{
+		"id": 11,
+		"player_name": "M Rahman",
+		"team_name": "RR"
+	},
+	{
+		"id": 12,
+		"player_name": "V Shankar",
+		"team_name": "SRH"
+	},
+	{
+		"id": 13,
+		"player_name": "W Saha",
+		"team_name": "SRH"
+	},
+	{
+		"id": 14,
+		"player_name": "I Tahir",
+		"team_name": "CSK"
+	},
+	{
+		"id": 15,
+		"player_name": "U Yadav",
+		"team_name": "DD"
+	}
+]
