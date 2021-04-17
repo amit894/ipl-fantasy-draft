@@ -18,30 +18,37 @@ class Players(Teams):
                 for innings in team[match]:
                     for inning in innings:
                         for player in inning:
-                            match_stat={}
-                            player_name=''
-                            stat={}
                             if isinstance(player,dict):
-                                player_name=player["name"]+"_"+teams.split(".")[0]
+                                player_name=[]
+                                match_stat={}
+                                stat={}
+                                player_name.append(player["name"]+"_"+teams.split(".")[0])
                                 if 'wickets' in player:
                                     stat["bowling_stat"]=player
                                 if 'runs' in player:
                                     if 'sr' in player:
                                         stat["batting_stat"]=player
+                                match_stat[match]=stat
+                                print(player_name[0])
+                                self.player_stats[player_name[0]]=match_stat
                             else:
                                 for x in inning:
-                                    player_name=x+"_"+teams.split(".")[0]
+                                    player_name=[]
+                                    match_stat={}
+                                    stat={}
+                                    player_name.append(x+"_"+teams.split(".")[0])
                                     stat["fielding_stat"]=inning[x]
-                            match_stat[match]=stat
-                            self.player_stats[player_name]=match_stat
+                                    match_stat[match]=stat
+                                    print(player_name[0])
+                                    self.player_stats[player_name[0]]=match_stat
         #print(self.player_stats)
         return self.player_stats
 
     async def update_stats(self):
         overall_stats=self.player_stats
         for players in overall_stats:
-            print(players)
-            print("delimiters")
+            #print(players)
+            #print("delimiters")
             writeFile("../resources/player_scores/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
 
 
