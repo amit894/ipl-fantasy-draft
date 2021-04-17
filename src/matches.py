@@ -9,7 +9,7 @@ class Matches():
     def __init__(self,urls):
         self.urls=urls
 
-    async def update_match_score(self):
+    def update_match_score(self):
         for url in self.urls:
             match_id=''
             data=[]
@@ -27,15 +27,12 @@ class Matches():
                             url_status['completed']="Yes"
                     writeFile("../resources/url.json",url_statuses)
 
-    async def get_all_matches(self):
+    def get_all_matches(self):
         matches = [f for f in listdir("../resources/matches") if isfile(join("../resources/matches", f))]
         return matches
 
 
 
-async def main():
-    urls=readFile("../resources/url.json")
-    M1=Matches(urls)
-    await M1.update_match_score()
-
-asyncio.run(main())
+urls=readFile("../resources/url.json")
+M1=Matches(urls)
+M1.update_match_score()
