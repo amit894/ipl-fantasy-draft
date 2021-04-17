@@ -42,7 +42,7 @@ class Players(Teams):
         for players in overall_stats:
             print(players)
             print("delimiters")
-            #writeFile("../resources/players/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
+            writeFile("../resources/player_scores/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
 
 
 async def main():
