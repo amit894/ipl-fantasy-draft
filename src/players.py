@@ -3,12 +3,13 @@ from os.path import isfile, join
 from teams import Teams
 from files import readFile, writeFile, appendFile
 import json
+import asyncio
 
 class Players(Teams):
     def __init__(self,teams):
         super().__init__(teams)
 
-    def get_stats(self):
+    async def get_stats(self):
         self.player_stats={}
 
         for teams in self.get_teams():
@@ -25,18 +26,29 @@ class Players(Teams):
                                 if 'wickets' in player:
                                     stat["bowling_stat"]=player
                                 if 'runs' in player:
-                                    stat["batting_stat"]=player
+                                    if 'sr' in player:
+                                        stat["batting_stat"]=player
                             else:
                                 for x in inning:
                                     player_name=x+"_"+teams.split(".")[0]
                                     stat["fielding_stat"]=inning[x]
                             match_stat[match]=stat
                             self.player_stats[player_name]=match_stat
-        print(self.player_stats)
+        #print(self.player_stats)
+        return self.player_stats
 
-    def update_stats(self):
-        print(self.get_teams())
+    async def update_stats(self):
+        overall_stats=self.player_stats
+        for players in overall_stats:
+            print(players)
+            print("delimiters")
+            #writeFile("../resources/players/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
 
-teams = [f for f in listdir("../resources/teams") if isfile(join("../resources/teams", f))]
-P1=Players(teams)
-P1.get_stats()
+
+async def main():
+    teams = [f for f in listdir("../resources/teams") if isfile(join("../resources/teams", f))]
+    P1=Players(teams)
+    await P1.get_stats()
+    await P1.update_stats()
+
+asyncio.run(main())
