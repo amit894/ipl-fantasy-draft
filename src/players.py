@@ -13,7 +13,7 @@ class Players(Teams):
         self.player_stats={}
 
         for teams in self.get_teams():
-            team=readFile("../resources/teams/"+teams)
+            team=readFile("../resources/team_scores/"+teams)
             for match in team:
                 for innings in team[match]:
                     for inning in innings:
@@ -46,7 +46,7 @@ class Players(Teams):
 
 
 async def main():
-    teams = [f for f in listdir("../resources/teams") if isfile(join("../resources/teams", f))]
+    teams = [f for f in listdir("../resources/team_scores") if isfile(join("../resources/team_scores", f))]
     P1=Players(teams)
     await P1.get_stats()
     await P1.update_stats()

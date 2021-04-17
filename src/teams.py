@@ -31,9 +31,9 @@ class Teams(Matches):
                     if (key1.find(key.split('.')[0])>=0):
                         team_data.append(match_data[key1])
                 overall_team_data[match_file.split('-')[0]]=team_data
-            writeFile("../resources/teams/"+key, overall_team_data)
+            writeFile("../resources/team_scores/"+key, overall_team_data)
 
-teams = [f for f in listdir("../resources/teams") if isfile(join("../resources/teams", f))]
+teams = [f for f in listdir("../resources/team_scores") if isfile(join("../resources/team_scores", f))]
 T1 = Teams(teams)
 T1.update_matches_per_teams()
 T1.update_stats_all_teams()
