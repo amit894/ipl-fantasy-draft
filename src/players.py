@@ -13,8 +13,8 @@ class Players(Teams):
 
         for teams in self.get_teams():
             team=readFile("../resources/teams/"+teams)
+            match_stat={}
             for match in team:
-                match_stat={}
                 for innings in team[match]:
                     for inning in innings:
                         for player in inning:
@@ -26,7 +26,7 @@ class Players(Teams):
                                 if 'runs' in player:
                                     stat["batting_stat"]=player
                         match_stat[match]=stat
-                        player_stats[player_name]=match_stat
+                player_stats[player_name]=match_stat
         print(player_stats)
 
 teams = [f for f in listdir("../resources/teams") if isfile(join("../resources/teams", f))]
