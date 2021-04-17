@@ -25,6 +25,10 @@ class Players(Teams):
                                     stat["bowling_stat"]=player
                                 if 'runs' in player:
                                     stat["batting_stat"]=player
+                            else:
+                                for x in inning:
+                                    player_name=x
+                                    stat["fielding_stat"]=inning[x]
                         match_stat[match]=stat
                 player_stats[player_name]=match_stat
         print(player_stats)
