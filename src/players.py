@@ -1,34 +1,21 @@
 from os import listdir
 from os.path import isfile, join
-from matches import Matches
+from teams import Teams
 from files import readFile, writeFile, appendFile
 
-
-class Players(Matches):
+class Players(Teams):
     def __init__(self,teams):
-        self.teams=teams
+        super().__init__(teams)
 
-    def get_matches_per_teams(self):
-        self.overall_matches={}
-        for team in self.teams:
-            team_match=[]
-            for match in self.get_all_matches():
-                if (match.find(team.split('.')[0])>=0):
-                    team_match.append(match)
-            self.overall_matches[team]=team_match
-        return self.overall_matches
-
-    def get_stats_all_teams(self):
-        for key in self.overall_matches:
-            team_data=[]
-            for match_file in self.overall_matches[key]:
-                match_data=readFile("../resources/matches/"+match_file)
-                for key1 in match_data:
-                    if (key1.find(key.split('.')[0])>=0):
-                        team_data.append(match_data[key1])
-            writeFile("../resources/teams/"+key, team_data)
+    def get_stats(self):
+        for teams in self.get_teams():
+            team=readFile("../resources/teams/"+teams)
+            for match in team:
+                for innings in team[match]:
+                    for player in innings:
+                        print(jsonify(innings[player]))
+                        print("De Limiter")
 
 teams = [f for f in listdir("../resources/teams") if isfile(join("../resources/teams", f))]
-P1 = Players(teams)
-P1.get_matches_per_teams()
-P1.get_stats_all_teams()
+P1=Players(teams)
+P1.get_stats()
