@@ -86,14 +86,17 @@ def get_bowling(Inning_bowling):
             wickets = b.find('div',class_="cb-col cb-col-8 text-right text-bold")
             if wickets:
                 bowler['wickets'] = str(wickets.get_text()).strip()
-                runs_given = b.find('div',class_="cb-col cb-col-10 text-right")
+                runs_given = b.find_all('div',class_="cb-col cb-col-10 text-right")
             if runs_given:
-                bowler['runs_given'] = str(runs_given.get_text()).strip()
+                bowler['runs_given'] = str(runs_given[0].get_text()).strip()
+                bowler['ec'] = str(runs_given[1].get_text()).strip()
                 all_others = b.find_all('div',class_="cb-col cb-col-8 text-right")
             if len(all_others)>0:
                 bowler['overs'] = str(all_others[0].get_text()).strip()
                 bowler['maiden'] = str(all_others[1].get_text()).strip()
                 bowler['no_balls'] = str(all_others[2].get_text()).strip()
+                # bowler['wides'] = str(all_others[3].get_text()).strip()
+
 
             if len(bowler) > 0:
                 bowling_info.append(bowler)

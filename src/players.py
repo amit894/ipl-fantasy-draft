@@ -94,14 +94,81 @@ class Players(Teams):
         for players in updated_player_stats:
             writeFile("../resources/scores/player_scores/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
 
+    #
+    # async def update_batting_point(batting_info):
+    #     batting_points=0
+    #     milestone_points=0
+    #     sr_points=0
+    #     milestone_points=20 if int(batting_info['runs'])>50
+    #     milestone_points=50 if int(batting_info['runs'])>100
+    #     milestone_points=80 if int(batting_info['runs'])>150
+    #     milestone_points=100 if int(batting_info['runs'])>200
+    #
+    #     if (int(batting_info['balls']>=10):
+    #         sr_points=-20 if int(batting_info['sr'])<50
+    #         sr_points=-10 if int(batting_info['sr'])<75
+    #         sr_points=-5 if int(batting_info['sr'])<100
+    #         sr_points=10 if int(batting_info['sr'])<150
+    #         sr_points=15 if int(batting_info['sr'])<200
+    #         sr_points=20 if int(batting_info['sr'])>=200
+    #
+    #     batting_points=int(batting_info['runs'])+int(batting_info['fours'])+int(batting_info['sixes'])*2
+    #     total_points=batting_points+sr_points+milestone_points+5
+    #
+    #     return total_points
+    #
+    # async def update_bowling_point(bowling_info):
+    #     bowling_points=0
+    #     milestone_points=0
+    #     ec_points=0
+    #     milestone_points=25 if int(bowling_info['wickets'])>3
+    #     milestone_points=40 if int(bowling_info['wickets'])>4
+    #     milestone_points=50 if int(bowling_info['wickets'])>5
+    #
+    #     if (int(bowling_info['overs']>=2):
+    #         ec_points=-20 if int(bowling_info['ec'])<=5
+    #         ec_points=-10 if int(bowling_info['ec'])<=7
+    #         ec_points=0 if int(bowling_info['ec'])<=10
+    #         ec_points=-10 if int(bowling_info['ec'])<=12
+    #         ec_points=-20 if int(bowling_info['ec'])>12
+    #
+    #     bowling_points=int(bowling_info['wickets'])*25+int(bowling_info['maiden'])*10
+    #     total_points=bowling_points+ec_points+milestone_points
+    #
+    #     return total_points
+    #
+    #
+    # aysnc def update_fielding_points(fielding_info):
+    #     return (fielding_info*10)
+
+
+
+    async def update_points(self):
+        for team in self.get_teams():
+            players = [f for f in listdir("../resources/scores/player_scores/"+team.split('.')[0]) if isfile(join("../resources/scores/player_scores/"+team.split('.')[0], f))]
+            raw_data={}
+            for player in players:
+                raw_data=readFile("../resources/scores/player_scores/"+team.split('.')[0]+"/"+player)
+                for key in raw_data:
+                    for key1 in key:
+                        temp_list=key1.split('_')
+                        if(temp_list[1]=="batting"):
+                            print(await update_batting_points(key[key1]))
+                        if(temp_list[1]=="bowling"):
+                            print(await update_bowling_points(key[key1]))
+                        if(temp_list[1]=="fielding"):
+                            print(await update_fielding_points(key[key1]))
+
+
 
 async def main():
     teams = [f for f in listdir("../resources/scores/team_scores") if isfile(join("../resources/scores/team_scores", f))]
     P1=Players(teams)
     main_player_stats=await P1.get_stats()
     main_player_stats[0]=await P1.remove_duplicate_elements(main_player_stats[0])
-    # #print(main_player_stats[0])
+    # print(main_player_stats[0])
     updated_player_stats=await P1.update_player_stats(main_player_stats[0],main_player_stats[1])
     await P1.update_stats(updated_player_stats)
+    # await P1.update_points()
 
 asyncio.run(main())
