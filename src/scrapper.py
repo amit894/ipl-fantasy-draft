@@ -127,4 +127,4 @@ def get_fielding(Inning_batting):
         temp_list.append(temp_dict)
     return(temp_list)
 
-print(get_match("https://www.cricbuzz.com/live-cricket-scorecard/35632/rr-vs-dc-7th-match-indian-premier-league-2021",["dc","rr"]))
+#print(get_match("https://www.cricbuzz.com/live-cricket-scorecard/35632/rr-vs-dc-7th-match-indian-premier-league-2021",["dc","rr"]))
