@@ -15,7 +15,7 @@ class Players(Teams):
         players={"test_player"}
 
         for teams in self.get_teams():
-            team=readFile("../resources/team_scores/"+teams)
+            team=readFile("../resources/scores/team_scores/"+teams)
             for match in team:
                 for innings in team[match]:
                     for inning in innings:
@@ -92,11 +92,11 @@ class Players(Teams):
     async def update_stats(self,updated_player_stats):
         overall_stats=updated_player_stats
         for players in updated_player_stats:
-            writeFile("../resources/player_scores/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
+            writeFile("../resources/scores/player_scores/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
 
 
 async def main():
-    teams = [f for f in listdir("../resources/team_scores") if isfile(join("../resources/team_scores", f))]
+    teams = [f for f in listdir("../resources/scores/team_scores") if isfile(join("../resources/scores/team_scores", f))]
     P1=Players(teams)
     main_player_stats=await P1.get_stats()
     main_player_stats[0]=await P1.remove_duplicate_elements(main_player_stats[0])
