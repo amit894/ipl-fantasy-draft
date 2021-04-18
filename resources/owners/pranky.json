@@ -1,1 +1,61 @@
-[{"player": "RKhan", "team": "SRH", "id": 0}, {"player": "MStoinis", "team": "DD", "id": 1}, {"player": "MPandey", "team": "SRH", "id": 2}, {"player": "JButler", "team": "RR", "id": 3}, {"player": "PCummins", "team": "KKR", "id": 4}, {"player": "MAgrawal", "team": "PK", "id": 5}, {"player": "JHolder", "team": "SRH", "id": 6}, {"player": "ARayudu", "team": "CSK", "id": 7}, {"player": "NRana", "team": "KKR", "id": 8}, {"player": "VChakravarthy", "team": "KKR", "id": 9}, {"player": "RTripathi", "team": "KKR", "id": 10}, {"player": "SSharma", "team": "SRH", "id": 11}, {"player": "SGopal", "team": "RR", "id": 12}, {"player": "NCoulter-Nile", "team": "MI", "id": 13}, {"player": "MSingh", "team": "PK", "id": 14}]
+[{
+	"player": "R Khan",
+	"team": "SRH",
+	"id": 0
+}, {
+	"player": "M Stoinis",
+	"team": "DD",
+	"id": 1
+}, {
+	"player": "M Pandey",
+	"team": "SRH",
+	"id": 2
+}, {
+	"player": "J Butler",
+	"team": "RR",
+	"id": 3
+}, {
+	"player": "P Cummins",
+	"team": "KKR",
+	"id": 4
+}, {
+	"player": "Mayank Agrawal",
+	"team": "PK",
+	"id": 5
+}, {
+	"player": "J Holder",
+	"team": "SRH",
+	"id": 6
+}, {
+	"player": "A Rayudu",
+	"team": "CSK",
+	"id": 7
+}, {
+	"player": "N Rana",
+	"team": "KKR",
+	"id": 8
+}, {
+	"player": "V Chakravarthy",
+	"team": "KKR",
+	"id": 9
+}, {
+	"player": "R Tripathi",
+	"team": "KKR",
+	"id": 10
+}, {
+	"player": "S Sharma",
+	"team": "SRH",
+	"id": 11
+}, {
+	"player": "S Gopal",
+	"team": "RR",
+	"id": 12
+}, {
+	"player": "N Coulter-Nile",
+	"team": "MI",
+	"id": 13
+}, {
+	"player": "M Singh",
+	"team": "PK",
+	"id": 14
+}]

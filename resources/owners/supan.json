@@ -1,1 +1,61 @@
-[{"player": "DWarner", "team": "SRH", "id": 0}, {"player": "AVilliers", "team": "RCB", "id": 1}, {"player": "QKock", "team": "MI", "id": 2}, {"player": "CMorris", "team": "RR", "id": 3}, {"player": "BKumar", "team": "SRH", "id": 4}, {"player": "FPlessis", "team": "CSK", "id": 5}, {"player": "JRichardson", "team": "PK", "id": 6}, {"player": "KNatrajan", "team": "SRH", "id": 7}, {"player": "YChahal", "team": "RCB", "id": 8}, {"player": "RChahar", "team": "MI", "id": 9}, {"player": "RBishnoi", "team": "PK", "id": 10}, {"player": "DChristian", "team": "RCB", "id": 11}, {"player": "MAzharuddin", "team": "RCB", "id": 12}, {"player": "JArcher", "team": "RR", "id": 13}, {"player": "MRahman", "team": "SRH", "id": 14}]
+[{
+	"player": "D Warner",
+	"team": "SRH",
+	"id": 0
+}, {
+	"player": "de Villiers",
+	"team": "RCB",
+	"id": 1
+}, {
+	"player": "de Kock",
+	"team": "MI",
+	"id": 2
+}, {
+	"player": "C Morris",
+	"team": "RR",
+	"id": 3
+}, {
+	"player": "B Kumar",
+	"team": "SRH",
+	"id": 4
+}, {
+	"player": "du Plessis",
+	"team": "CSK",
+	"id": 5
+}, {
+	"player": "J Richardson",
+	"team": "PK",
+	"id": 6
+}, {
+	"player": "K Natrajan",
+	"team": "SRH",
+	"id": 7
+}, {
+	"player": "Y Chahal",
+	"team": "RCB",
+	"id": 8
+}, {
+	"player": "R Chahar",
+	"team": "MI",
+	"id": 9
+}, {
+	"player": "R Bishnoi",
+	"team": "PK",
+	"id": 10
+}, {
+	"player": "D Christian",
+	"team": "RCB",
+	"id": 11
+}, {
+	"player": "M Azharuddin",
+	"team": "RCB",
+	"id": 12
+}, {
+	"player": "J Archer",
+	"team": "RR",
+	"id": 13
+}, {
+	"player": "M Rahman",
+	"team": "SRH",
+	"id": 14
+}]

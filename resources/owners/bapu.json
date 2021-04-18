@@ -1,1 +1,61 @@
-[{"player": "RSharma", "team": "MI", "id": 0}, {"player": "HPandaya", "team": "MI", "id": 1}, {"player": "DPadikkal", "team": "RCB", "id": 2}, {"player": "NPooran", "team": "PK", "id": 3}, {"player": "SHasan", "team": "KKR", "id": 4}, {"player": "SThakur", "team": "CSK", "id": 5}, {"player": "DKarthik", "team": "KKR", "id": 6}, {"player": "RAshwin", "team": "DD", "id": 7}, {"player": "MAli", "team": "CSK", "id": 8}, {"player": "PKrishna", "team": "KKR", "id": 9}, {"player": "KJamieson", "team": "RCB", "id": 10}, {"player": "RUthappa", "team": "CSK", "id": 11}, {"player": "KGowtham", "team": "CSK", "id": 12}, {"player": "ATare", "team": "MI", "id": 13}, {"player": "CJordan", "team": "PK", "id": 14}]
+[{
+	"player": "R Sharma",
+	"team": "MI",
+	"id": 0
+}, {
+	"player": "H Pandya",
+	"team": "MI",
+	"id": 1
+}, {
+	"player": "D Padikkal",
+	"team": "RCB",
+	"id": 2
+}, {
+	"player": "N Pooran",
+	"team": "PK",
+	"id": 3
+}, {
+	"player": "S Hasan",
+	"team": "KKR",
+	"id": 4
+}, {
+	"player": "S Thakur",
+	"team": "CSK",
+	"id": 5
+}, {
+	"player": "D Karthik",
+	"team": "KKR",
+	"id": 6
+}, {
+	"player": "R Ashwin",
+	"team": "DD",
+	"id": 7
+}, {
+	"player": "M Ali",
+	"team": "CSK",
+	"id": 8
+}, {
+	"player": "P Krishna",
+	"team": "KKR",
+	"id": 9
+}, {
+	"player": "K Jamieson",
+	"team": "RCB",
+	"id": 10
+}, {
+	"player": "R Uthappa",
+	"team": "CSK",
+	"id": 11
+}, {
+	"player": "K Gowtham",
+	"team": "CSK",
+	"id": 12
+}, {
+	"player": "A Tare",
+	"team": "MI",
+	"id": 13
+}, {
+	"player": "C Jordan",
+	"team": "PK",
+	"id": 14
+}]

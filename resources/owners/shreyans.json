@@ -1,1 +1,61 @@
-[{"player": "RPant", "team": "DD", "id": 0}, {"player": "SDhawan", "team": "DD", "id": 1}, {"player": "JBumrah", "team": "MI", "id": 2}, {"player": "SSamson", "team": "RR", "id": 3}, {"player": "KRabada", "team": "DD", "id": 4}, {"player": "PShaw", "team": "DD", "id": 5}, {"player": "MNabi", "team": "SRH", "id": 6}, {"player": "SNaraine", "team": "KKR", "id": 7}, {"player": "ANortje", "team": "DD", "id": 8}, {"player": "KPandaya", "team": "MI", "id": 9}, {"player": "SKhan", "team": "PK", "id": 10}, {"player": "ARahane", "team": "DD", "id": 11}, {"player": "ASamad", "team": "SRH", "id": 12}, {"player": "KSarma", "team": "CSK", "id": 13}, {"player": "HPatel", "team": "RCB", "id": 14}]
+[{
+	"player": "R Pant",
+	"team": "DD",
+	"id": 0
+}, {
+	"player": "S Dhawan",
+	"team": "DD",
+	"id": 1
+}, {
+	"player": "J Bumrah",
+	"team": "MI",
+	"id": 2
+}, {
+	"player": "S Samson",
+	"team": "RR",
+	"id": 3
+}, {
+	"player": "K Rabada",
+	"team": "DD",
+	"id": 4
+}, {
+	"player": "P Shaw",
+	"team": "DD",
+	"id": 5
+}, {
+	"player": "M Nabi",
+	"team": "SRH",
+	"id": 6
+}, {
+	"player": "S Naraine",
+	"team": "KKR",
+	"id": 7
+}, {
+	"player": "A Nortje",
+	"team": "DD",
+	"id": 8
+}, {
+	"player": "K Pandya",
+	"team": "MI",
+	"id": 9
+}, {
+	"player": "S Khan",
+	"team": "PK",
+	"id": 10
+}, {
+	"player": "A Rahane",
+	"team": "DD",
+	"id": 11
+}, {
+	"player": "A Samad",
+	"team": "SRH",
+	"id": 12
+}, {
+	"player": "K Sarma",
+	"team": "CSK",
+	"id": 13
+}, {
+	"player": "H Patel",
+	"team": "RCB",
+	"id": 14
+}]
