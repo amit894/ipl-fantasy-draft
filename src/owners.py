@@ -38,4 +38,4 @@ for i in range(len(owners)):
             owner_sum+=player_sum
     print(owner_sum)
     temp_dict[owners[i]]=owner_sum
-    appendFile("../resources/points/owners/points.json", temp_dict)
+    writeFile("../resources/points/owners/points.json", temp_dict)
