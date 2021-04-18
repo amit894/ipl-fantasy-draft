@@ -23,24 +23,23 @@ class Players(Teams):
                             if isinstance(player,dict):
                                 player_name=[]
                                 stat={}
-                                player_name.append(player["name"]+"_"+teams.split(".")[0])
                                 if 'wickets' in player:
+                                    player_name.append(player["name"]+"_"+teams.split(".")[0])
                                     stat[player_name[0]+"_"+str(match)+"_bowling_stat"]=player
-                                if 'runs' in player:
-                                    if 'sr' in player:
-                                        stat[player_name[0]+"_"+str(match)+"_batting_stat"]=player
-
-                                player_stats.append(stat)
-                                players.add(player_name[0])
-                            else:
-                                for x in inning:
-                                    player_name=[]
-                                    stat={}
-                                    player_name.append(x+"_"+teams.split(".")[0])
-                                    stat[player_name[0]+"_"+str(match)+"_fielding_stat"]=inning[x]
                                     player_stats.append(stat)
                                     players.add(player_name[0])
-
+                                if 'runs' in player:
+                                    if 'sr' in player:
+                                        player_name.append(player["name"]+"_"+teams.split(".")[0])
+                                        stat[player_name[0]+"_"+str(match)+"_batting_stat"]=player
+                                        player_stats.append(stat)
+                                        players.add(player_name[0])
+                                if len(player)==1:
+                                    for key in player:
+                                        player_name.append(key+"_"+teams.split(".")[0])
+                                        stat[player_name[0]+"_"+str(match)+"_fielding_stat"]=player[key]
+                                        player_stats.append(stat)
+                                        players.add(player_name[0])
         temp_list.append(players)
         temp_list.append(player_stats)
         return temp_list
@@ -94,8 +93,8 @@ class Players(Teams):
         overall_stats=updated_player_stats
         print(len(updated_player_stats))
         for players in updated_player_stats:
-            print(updated_player_stats[players])
-            print("delimiters")
+            # print(updated_player_stats[players])
+            # print("delimiters")
             writeFile("../resources/player_scores/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
 
 
