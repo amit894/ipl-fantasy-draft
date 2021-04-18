@@ -4,6 +4,7 @@ from teams import Teams
 from files import readFile, writeFile, appendFile
 import json
 import asyncio
+import csv
 
 class Players(Teams):
     def __init__(self,teams):
@@ -154,28 +155,23 @@ class Players(Teams):
         for team in self.get_teams():
             players = [f for f in listdir("../resources/scores/player_scores/"+team.split('.')[0]) if isfile(join("../resources/scores/player_scores/"+team.split('.')[0], f))]
             raw_data={}
-            temp_player_dict={}
             for player in players:
-                temp_match_dict={}
-                temp_inning_dict={}
+                temp_player_dict={}
                 raw_data=readFile("../resources/scores/player_scores/"+team.split('.')[0]+"/"+player)
                 for key in raw_data:
                     for key1 in key:
                         temp_list=key1.split('_')
-                        temp_dict={}
                         if(temp_list[1]=="batting"):
                             temp_batting_points=await self.update_batting_points(key[key1])
-                            temp_dict["batting_points"]=temp_batting_points
+                            temp_player_dict[temp_list[0]+"_batting_points"]=temp_batting_points
                         if(temp_list[1]=="bowling"):
                             temp_bowling_points= await self.update_bowling_points(key[key1])
-                            temp_dict["bowling_points"]=temp_bowling_points
+                            temp_player_dict[temp_list[0]+"_bowling_points"]=temp_bowling_points
                         if(temp_list[1]=="fielding"):
                             temp_fielding_points= await self.update_fielding_points(key[key1])
-                            temp_dict["fielding_points"]=temp_fielding_points
-                        temp_inning_dict.update(temp_dict)
-                        temp_match_dict[temp_list[0]]=temp_inning_dict
-                temp_player_dict[player]=temp_match_dict
-                print(temp_player_dict)
+                            temp_player_dict[temp_list[0]+"_fielding_points"]=temp_fielding_points
+                print(player,temp_player_dict)
+                writeFile("../resources/points/players/"+player, temp_player_dict)
 
 async def main():
     teams = [f for f in listdir("../resources/scores/team_scores") if isfile(join("../resources/scores/team_scores", f))]
@@ -186,5 +182,6 @@ async def main():
     updated_player_stats=await P1.update_player_stats(main_player_stats[0],main_player_stats[1])
     await P1.update_stats(updated_player_stats)
     await P1.update_points()
+
 
 asyncio.run(main())
