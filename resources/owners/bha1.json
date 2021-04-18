@@ -1,1 +1,61 @@
-[{"player": "VKohli", "team": "RCB", "id": 0}, {"player": "IKishan", "team": "MI", "id": 1}, {"player": "RJadeja", "team": "CSK", "id": 2}, {"player": "RTewatia", "team": "RR", "id": 3}, {"player": "EMorgan", "team": "KKR", "id": 4}, {"player": "KPollard", "team": "MI", "id": 5}, {"player": "WSundar", "team": "KKR", "id": 6}, {"player": "MSiraj", "team": "RCB", "id": 7}, {"player": "APatel", "team": "DD", "id": 8}, {"player": "MAshwin", "team": "PK", "id": 9}, {"player": "LFerguson", "team": "KKR", "id": 10}, {"player": "RGaikwad", "team": "CSK", "id": 11}, {"player": "DBravo", "team": "CSK", "id": 12}, {"player": "KYadav", "team": "KKR", "id": 13}, {"player": "ISharma", "team": "DD", "id": 14}]
+[{
+	"player": "V Kohli",
+	"team": "RCB",
+	"id": 0
+}, {
+	"player": "I Kishan",
+	"team": "MI",
+	"id": 1
+}, {
+	"player": "R Jadeja",
+	"team": "CSK",
+	"id": 2
+}, {
+	"player": "R Tewatia",
+	"team": "RR",
+	"id": 3
+}, {
+	"player": "E Morgan",
+	"team": "KKR",
+	"id": 4
+}, {
+	"player": "K Pollard",
+	"team": "MI",
+	"id": 5
+}, {
+	"player": "W Sundar",
+	"team": "KKR",
+	"id": 6
+}, {
+	"player": "M Siraj",
+	"team": "RCB",
+	"id": 7
+}, {
+	"player": "A Patel",
+	"team": "DD",
+	"id": 8
+}, {
+	"player": "M Ashwin",
+	"team": "PK",
+	"id": 9
+}, {
+	"player": "L Ferguson",
+	"team": "KKR",
+	"id": 10
+}, {
+	"player": "R Gaikwad",
+	"team": "CSK",
+	"id": 11
+}, {
+	"player": "DJ Bravo",
+	"team": "CSK",
+	"id": 12
+}, {
+	"player": "K Yadav",
+	"team": "KKR",
+	"id": 13
+}, {
+	"player": "I Sharma",
+	"team": "DD",
+	"id": 14
+}]
