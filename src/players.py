@@ -10,7 +10,7 @@ class Players(Teams):
     def __init__(self,teams):
         super().__init__(teams)
 
-    async def get_stats(self):
+    def get_stats(self):
         player_stats=[]
         player_list=[]
         players={"test_player"}
@@ -47,7 +47,7 @@ class Players(Teams):
         return player_list
 
 
-    async def update_player_stats(self,players,player_stats):
+    def update_player_stats(self,players,player_stats):
         masterlist=readFile("../resources/players.json")
         updated_player_stats={}
         sorted_players=list(players)
@@ -66,7 +66,7 @@ class Players(Teams):
         #print("De delimiters")
         return(updated_player_stats)
 
-    async def remove_duplicate_elements(self,list1):
+    def remove_duplicate_elements(self,list1):
         masterlist=readFile("../resources/players.json")
         temp_list=set()
         for player in list1:
@@ -77,13 +77,13 @@ class Players(Teams):
 
 
 
-    async def update_stats(self,updated_player_stats):
+    def update_stats(self,updated_player_stats):
         overall_stats=updated_player_stats
         for players in updated_player_stats:
             writeFile("../resources/scores/player_scores/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
 
     #
-    async def update_batting_points(self,batting_info):
+    def update_batting_points(self,batting_info):
         batting_points=0
         milestone_points=0
         sr_points=0
@@ -98,17 +98,17 @@ class Players(Teams):
 
 
         if int(batting_info['balls'])>=10:
-            if int(float(batting_info['sr']))<50:
+            if float(batting_info['sr'])<50:
                 sr_points=-10
-            elif int(float(batting_info['sr']))<75:
+            elif float(batting_info['sr'])<75:
                 sr_points=-10
-            if int(float(batting_info['sr']))<100:
+            elif float(batting_info['sr'])<100:
                 sr_points=-5
-            elif int(float(batting_info['sr']))<150:
+            elif float(batting_info['sr'])<150:
                 sr_points=10
-            elif int(float(batting_info['sr']))<200:
+            elif float(batting_info['sr'])<200:
                 sr_points=15
-            elif int(float(batting_info['sr']))>=200:
+            elif float(batting_info['sr'])>=200:
                 sr_points=20
 
         batting_points=int(batting_info['runs'])+int(batting_info['fours'])+int(batting_info['sixes'])*2
@@ -116,7 +116,7 @@ class Players(Teams):
 
         return total_points
 
-    async def update_bowling_points(self,bowling_info):
+    def update_bowling_points(self,bowling_info):
         bowling_points=0
         milestone_points=0
         ec_points=0
@@ -129,16 +129,16 @@ class Players(Teams):
             milestone_points=50
 
         if int(float(bowling_info['overs']))>=2:
-            if int(float(bowling_info['ec']))<=5:
-                ec_points=20
-            if int(float(bowling_info['ec']))<=7:
-                ec_points=10
-            if int(float(bowling_info['ec']))<=10:
-                ec_points=0
-            if int(float(bowling_info['ec']))<=12:
-                ec_points=-10
-            if int(float(bowling_info['ec']))>12:
+            if float(bowling_info['ec'])>12:
                 ec_points=-20
+            elif float(bowling_info['ec'])>10:
+                ec_points=-10
+            elif float(bowling_info['ec'])>7:
+                ec_points=0
+            elif float(bowling_info['ec'])>5:
+                ec_points=10
+            elif float(bowling_info['ec'])<=5:
+                ec_points=20
 
         bowling_points=int(bowling_info['wickets'])*25+int(bowling_info['maiden'])*10
         total_points=bowling_points+ec_points+milestone_points
@@ -146,12 +146,12 @@ class Players(Teams):
         return total_points
 
 
-    async def update_fielding_points(self,fielding_info):
+    def update_fielding_points(self,fielding_info):
         return (fielding_info*10)
 
 
 
-    async def update_points(self):
+    def update_points(self):
         for team in self.get_teams():
             players = [f for f in listdir("../resources/scores/player_scores/"+team.split('.')[0]) if isfile(join("../resources/scores/player_scores/"+team.split('.')[0], f))]
             raw_data={}
@@ -162,26 +162,22 @@ class Players(Teams):
                     for key1 in key:
                         temp_list=key1.split('_')
                         if(temp_list[1]=="batting"):
-                            temp_batting_points=await self.update_batting_points(key[key1])
+                            temp_batting_points=self.update_batting_points(key[key1])
                             temp_player_dict[temp_list[0]+"_batting_points"]=temp_batting_points
                         if(temp_list[1]=="bowling"):
-                            temp_bowling_points= await self.update_bowling_points(key[key1])
+                            temp_bowling_points=self.update_bowling_points(key[key1])
                             temp_player_dict[temp_list[0]+"_bowling_points"]=temp_bowling_points
                         if(temp_list[1]=="fielding"):
-                            temp_fielding_points= await self.update_fielding_points(key[key1])
+                            temp_fielding_points=self.update_fielding_points(key[key1])
                             temp_player_dict[temp_list[0]+"_fielding_points"]=temp_fielding_points
-                print(player,temp_player_dict)
+                #print(player,temp_player_dict)
                 writeFile("../resources/points/players/"+player, temp_player_dict)
 
-async def main():
-    teams = [f for f in listdir("../resources/scores/team_scores") if isfile(join("../resources/scores/team_scores", f))]
-    P1=Players(teams)
-    main_player_stats=await P1.get_stats()
-    main_player_stats[0]=await P1.remove_duplicate_elements(main_player_stats[0])
-    # print(main_player_stats[0])
-    updated_player_stats=await P1.update_player_stats(main_player_stats[0],main_player_stats[1])
-    await P1.update_stats(updated_player_stats)
-    await P1.update_points()
 
-
-asyncio.run(main())
+teams = [f for f in listdir("../resources/scores/team_scores") if isfile(join("../resources/scores/team_scores", f))]
+P1=Players(teams)
+main_player_stats=P1.get_stats()
+main_player_stats[0]=P1.remove_duplicate_elements(main_player_stats[0])
+updated_player_stats=P1.update_player_stats(main_player_stats[0],main_player_stats[1])
+P1.update_stats(updated_player_stats)
+P1.update_points()
