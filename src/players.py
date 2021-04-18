@@ -47,6 +47,7 @@ class Players(Teams):
 
 
     async def update_player_stats(self,players,player_stats):
+        masterlist=readFile("../resources/players.json")
         updated_player_stats={}
         sorted_players=list(players)
         sorted_players.sort()
@@ -55,7 +56,8 @@ class Players(Teams):
             for key2 in player_stats:
                 for key3 in key2:
                     temp_dict={}
-                    if(key1.split("_")[0].find(key3.split("_")[0])>=0):
+                    key4=masterlist[key3.split("_")[0]]
+                    if(key1.split("_")[0].find(key4)>=0):
                         temp_dict[key3.split("_")[2]+"_"+key3.split("_")[3]]=key2[key3]
                         l1.append(temp_dict)
             updated_player_stats[key1]=l1
