@@ -117,4 +117,11 @@ def get_fielding(Inning_batting):
         if dismissal.find("sub (") != -1:
                 del fielders[-1]
     fielding_info=Counter(fielders)
-    return(fielding_info)
+    temp_list=[]
+    for keys in fielding_info:
+        temp_dict={}
+        temp_dict[keys]=fielding_info[keys]
+        temp_list.append(temp_dict)
+    return(temp_list)
+
+print(get_match("https://www.cricbuzz.com/live-cricket-scorecard/35632/rr-vs-dc-7th-match-indian-premier-league-2021",["dc","rr"]))
