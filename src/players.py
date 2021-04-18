@@ -93,7 +93,7 @@ class Players(Teams):
             milestone_points=80
         elif int(batting_info['runs'])>=100:
             milestone_points=50
-        elif int(batting_info['runs'])>50:
+        elif int(batting_info['runs'])>=50:
             milestone_points=20
 
 
@@ -121,11 +121,11 @@ class Players(Teams):
         milestone_points=0
         ec_points=0
 
-        if int(bowling_info['wickets'])>3:
+        if int(bowling_info['wickets'])>=3:
             milestone_points=25
-        elif int(bowling_info['wickets'])>4:
+        elif int(bowling_info['wickets'])>=4:
             milestone_points=40
-        elif int(bowling_info['wickets'])>5:
+        elif int(bowling_info['wickets'])>=5:
             milestone_points=50
 
         if int(float(bowling_info['overs']))>=2:
