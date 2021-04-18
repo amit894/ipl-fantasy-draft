@@ -112,7 +112,6 @@ class Players(Teams):
 
         batting_points=int(batting_info['runs'])+int(batting_info['fours'])+int(batting_info['sixes'])*2
         total_points=batting_points+sr_points+milestone_points+5
-        print(total_points)
 
         return total_points
 
@@ -142,7 +141,6 @@ class Players(Teams):
 
         bowling_points=int(bowling_info['wickets'])*25+int(bowling_info['maiden'])*10
         total_points=bowling_points+ec_points+milestone_points
-        print(total_points)
 
         return total_points
 
@@ -156,19 +154,28 @@ class Players(Teams):
         for team in self.get_teams():
             players = [f for f in listdir("../resources/scores/player_scores/"+team.split('.')[0]) if isfile(join("../resources/scores/player_scores/"+team.split('.')[0], f))]
             raw_data={}
+            temp_player_dict={}
             for player in players:
+                temp_match_dict={}
+                temp_inning_dict={}
                 raw_data=readFile("../resources/scores/player_scores/"+team.split('.')[0]+"/"+player)
                 for key in raw_data:
                     for key1 in key:
                         temp_list=key1.split('_')
+                        temp_dict={}
                         if(temp_list[1]=="batting"):
-                            print(await self.update_batting_points(key[key1]))
+                            temp_batting_points=await self.update_batting_points(key[key1])
+                            temp_dict["batting_points"]=temp_batting_points
                         if(temp_list[1]=="bowling"):
-                            print(await self.update_bowling_points(key[key1]))
+                            temp_bowling_points= await self.update_bowling_points(key[key1])
+                            temp_dict["bowling_points"]=temp_bowling_points
                         if(temp_list[1]=="fielding"):
-                            print(await self.update_fielding_points(key[key1]))
-
-
+                            temp_fielding_points= await self.update_fielding_points(key[key1])
+                            temp_dict["fielding_points"]=temp_fielding_points
+                        temp_inning_dict.update(temp_dict)
+                        temp_match_dict[temp_list[0]]=temp_inning_dict
+                temp_player_dict[player]=temp_match_dict
+                print(temp_player_dict)
 
 async def main():
     teams = [f for f in listdir("../resources/scores/team_scores") if isfile(join("../resources/scores/team_scores", f))]
