@@ -104,27 +104,57 @@ def get_bowling(Inning_bowling):
 
 def get_fielding(Inning_batting):
     fielding_info={}
-    fielders=[]
+    fielders={}
     for i in range(len(Inning_batting[0])):
         mode=''
         if 'out_by' in Inning_batting[0][i]:
             dismissal=Inning_batting[0][i]['out_by']
         if dismissal.find("c and b") == 0:
-            fielders.append(dismissal.split("c and b")[1].strip())
+            y=dismissal.split("c and b")[1].strip()
+            if y in fielders:
+                fielders[y]+=1
+            else:
+                fielders[y]=1
+            #fielders.append(dismissal.split("c and b")[1].strip())
         elif dismissal.find("c") == 0:
-            fielders.append(dismissal.split("c ")[1].split("b ")[0].strip())
+                y=dismissal.split("c ")[1].split("b ")[0].strip()
+                if y in fielders:
+                    fielders[y]+=1
+                else:
+                    fielders[y]=1
+            #fielders.append(dismissal.split("c ")[1].split("b ")[0].strip())
         if dismissal.find("st") == 0:
-            fielders.append(dismissal.split("st ")[1].split("b ")[0].strip())
+            y=dismissal.split("st ")[1].split("b ")[0].strip()
+            if y in fielders:
+                fielders[y]+=1
+            else:
+                fielders[y]=1
+            #fielders.append(dismissal.split("st ")[1].split("b ")[0].strip())
         if dismissal.find("run out") == 0:
-            fielders.extend([x.strip() for x in dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")])
+            y=dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")
+            if len(y)==1:
+                for a in y:
+                    if a in fielders:
+                        fielders[a.strip()]+=1
+                    else:
+                        fielders[a.strip()]=1
+            else:
+                for a in y:
+                    if a in fielders:
+                        fielders[a.strip()]+=0.5
+                    else:
+                        fielders[a.strip()]=0.5
+            #fielders.extend([x.strip() for x in dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")])
         if dismissal.find("sub (") != -1:
                 del fielders[-1]
-    fielding_info=Counter(fielders)
+    #print(fielders)
+    # fielding_info=Counter(fielders)
     temp_list=[]
-    for keys in fielding_info:
+    for keys in fielders:
         temp_dict={}
-        temp_dict[keys]=fielding_info[keys]
+        temp_dict[keys]=fielders[keys]
         temp_list.append(temp_dict)
+    #print(temp_list)
     return(temp_list)
 
-#print(get_match("https://www.cricbuzz.com/live-cricket-scorecard/35632/rr-vs-dc-7th-match-indian-premier-league-2021",["dc","rr"]))
+get_match("https://www.cricbuzz.com/live-cricket-scorecard/35612/mi-vs-rcb-1st-match-indian-premier-league-2021",["mi","rcb"])
