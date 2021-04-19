@@ -170,6 +170,10 @@ class Players(Teams):
                         if(temp_list[1]=="fielding"):
                             temp_fielding_points=self.update_fielding_points(key[key1])
                             temp_player_dict[temp_list[0]+"_fielding_points"]=temp_fielding_points
+                    if(temp_list[0]+"_batting_points") in temp_player_dict:
+                        pass
+                    else:
+                        temp_player_dict[temp_list[0]+"_batting_points"]=5
                 #print(player,temp_player_dict)
                 writeFile("../resources/points/players/"+player, temp_player_dict)
 
