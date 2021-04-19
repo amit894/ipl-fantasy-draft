@@ -99,7 +99,7 @@ class Players(Teams):
 
         if int(batting_info['balls'])>=10:
             if float(batting_info['sr'])<50:
-                sr_points=-10
+                sr_points=-20
             elif float(batting_info['sr'])<75:
                 sr_points=-10
             elif float(batting_info['sr'])<100:
