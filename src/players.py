@@ -67,9 +67,12 @@ class Players(Teams):
         return(updated_player_stats)
 
     def remove_duplicate_elements(self,list1):
+        masterlist={}
         masterlist=readFile("../resources/players.json")
         temp_list=set()
         for player in list1:
+            #print(masterlist[player.split("_")[0]])
+            #print(masterlist[player.split("_")[0]])
             temp_list.add(masterlist[player.split("_")[0]]+'_'+player.split("_")[1])
         print(len(list1),len(temp_list))
         list1=list(temp_list)
