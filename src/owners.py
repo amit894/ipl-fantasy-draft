@@ -26,9 +26,9 @@ class Owners():
 
 owners=["ahuja","bapu","supan","shreyans","dusty","pranky","bha1"]
 
+temp_dict={}
 for i in range(len(owners)):
     owner_sum=0
-    temp_dict={}
     O1=Owners(owners[i],i)
     players=O1.readPlayers()
     player_list=[]
@@ -49,4 +49,4 @@ for i in range(len(owners)):
     #print(player_list)
     temp_dict[owners[i]]=owner_sum
     print(owner_sum)
-    appendFile("../resources/points/owners/points.json", temp_dict)
+appendFile("../resources/points/owners/points.json", temp_dict)
