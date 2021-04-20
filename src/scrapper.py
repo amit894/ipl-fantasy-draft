@@ -109,44 +109,44 @@ def get_fielding(Inning_batting):
         mode=''
         if 'out_by' in Inning_batting[0][i]:
             dismissal=Inning_batting[0][i]['out_by']
-        if dismissal.find("c and b") == 0:
-            y=dismissal.split("c and b")[1].strip()
-            if y in fielders:
-                fielders[y]+=1
-            else:
-                fielders[y]=1
-            #fielders.append(dismissal.split("c and b")[1].strip())
-        elif dismissal.find("c") == 0:
-                y=dismissal.split("c ")[1].split("b ")[0].strip()
+            if dismissal.find("c and b") == 0:
+                y=dismissal.split("c and b")[1].strip()
                 if y in fielders:
                     fielders[y]+=1
                 else:
                     fielders[y]=1
-            #fielders.append(dismissal.split("c ")[1].split("b ")[0].strip())
-        if dismissal.find("st") == 0:
-            y=dismissal.split("st ")[1].split("b ")[0].strip()
-            if y in fielders:
-                fielders[y]+=1
-            else:
-                fielders[y]=1
-            #fielders.append(dismissal.split("st ")[1].split("b ")[0].strip())
-        if dismissal.find("run out") == 0:
-            y=dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")
-            if len(y)==1:
-                for a in y:
-                    if a in fielders:
-                        fielders[a.strip()]+=1
+                #fielders.append(dismissal.split("c and b")[1].strip())
+            elif dismissal.find("c") == 0:
+                    y=dismissal.split("c ")[1].split("b ")[0].strip()
+                    if y in fielders:
+                        fielders[y]+=1
                     else:
-                        fielders[a.strip()]=1
-            else:
-                for a in y:
-                    if a in fielders:
-                        fielders[a.strip()]+=0.5
-                    else:
-                        fielders[a.strip()]=0.5
-            #fielders.extend([x.strip() for x in dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")])
-        if dismissal.find("sub (") != -1:
-                del fielders[-1]
+                        fielders[y]=1
+                #fielders.append(dismissal.split("c ")[1].split("b ")[0].strip())
+            if dismissal.find("st") == 0:
+                y=dismissal.split("st ")[1].split("b ")[0].strip()
+                if y in fielders:
+                    fielders[y]+=1
+                else:
+                    fielders[y]=1
+                #fielders.append(dismissal.split("st ")[1].split("b ")[0].strip())
+            if dismissal.find("run out") == 0:
+                y=dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")
+                if len(y)==1:
+                    for a in y:
+                        if a in fielders:
+                            fielders[a.strip()]+=1
+                        else:
+                            fielders[a.strip()]=1
+                else:
+                    for a in y:
+                        if a in fielders:
+                            fielders[a.strip()]+=0.5
+                        else:
+                            fielders[a.strip()]=0.5
+                #fielders.extend([x.strip() for x in dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")])
+            if dismissal.find("sub (") != -1:
+                    del fielders[-1]
     #print(fielders)
     # fielding_info=Counter(fielders)
     temp_list=[]
