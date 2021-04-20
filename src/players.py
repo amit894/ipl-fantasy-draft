@@ -129,7 +129,7 @@ class Players(Teams):
         elif int(bowling_info['wickets'])>=4:
             milestone_points=40
         elif int(bowling_info['wickets'])>=3:
-            milestone_points=30
+            milestone_points=25
 
         if int(float(bowling_info['overs']))>=2:
             if float(bowling_info['ec'])>12:
