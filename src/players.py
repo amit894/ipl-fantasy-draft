@@ -41,6 +41,17 @@ class Players(Teams):
                                         stat[player_name[0]+"_"+str(match)+"_fielding_stat"]=player[key]
                                         player_stats.append(stat)
                                         players.add(player_name[0])
+                                        print(stat)
+                                if len(player)==2:
+                                    #print(list(player.keys())[0],list(player.values())[0])
+                                    for key in player:
+                                        if key in "playing":
+                                            pass
+                                        else:
+                                            #print(key+"_"+str(match)+"_playing_stat")
+                                            stat[key+"_"+teams.split(".")[0]+"_"+str(match)+"_playing_stat"]=player[key]
+                                            player_stats.append(stat)
+                                            players.add(key+"_"+teams.split(".")[0])
 
         player_list.append(players)
         player_list.append(player_stats)
@@ -72,7 +83,8 @@ class Players(Teams):
         temp_list=set()
         for player in list1:
             #print(masterlist[player.split("_")[0]])
-            #print(masterlist[player.split("_")[0]])
+            #print(player)
+            #print(player.split("_")[1])
             temp_list.add(masterlist[player.split("_")[0]]+'_'+player.split("_")[1])
         print(len(list1),len(temp_list))
         list1=list(temp_list)
@@ -83,6 +95,7 @@ class Players(Teams):
     def update_stats(self,updated_player_stats):
         overall_stats=updated_player_stats
         for players in updated_player_stats:
+            #print(overall_stats[players])
             writeFile("../resources/scores/player_scores/"+players.split('_')[1]+"/"+players.split('_')[0],overall_stats[players])
 
     #
@@ -115,7 +128,7 @@ class Players(Teams):
                 sr_points=20
 
         batting_points=int(batting_info['runs'])+int(batting_info['fours'])+int(batting_info['sixes'])*2
-        total_points=batting_points+sr_points+milestone_points+5
+        total_points=batting_points+sr_points+milestone_points
 
         return total_points
 
@@ -152,6 +165,9 @@ class Players(Teams):
     def update_fielding_points(self,fielding_info):
         return (fielding_info*10)
 
+    def update_playing_points(self,playing_info):
+        return (playing_info*5)
+
 
 
     def update_points(self):
@@ -173,10 +189,9 @@ class Players(Teams):
                         if(temp_list[1]=="fielding"):
                             temp_fielding_points=self.update_fielding_points(key[key1])
                             temp_player_dict[temp_list[0]+"_fielding_points"]=temp_fielding_points
-                    if(temp_list[0]+"_batting_points") in temp_player_dict:
-                        pass
-                    else:
-                        temp_player_dict[temp_list[0]+"_batting_points"]=5
+                        if(temp_list[1]=="playing"):
+                            temp_playing_points=self.update_playing_points(key[key1])
+                            temp_player_dict[temp_list[0]+"_playing_points"]=temp_playing_points
                 #print(player,temp_player_dict)
                 writeFile("../resources/points/players/"+player, temp_player_dict)
 

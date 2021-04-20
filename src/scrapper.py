@@ -20,12 +20,15 @@ def get_match(url,teams):
       batting=[]
       bowling=[]
       fielding=[]
+      playing=[]
       current_innings=get_innings(Soup, "innings_"+str(i+1))
       innings.append(current_innings)
       batting.append(get_batting(innings[i][0]))
       bowling.append(get_bowling(innings[i][1]))
       fielding.append(get_fielding(batting))
+      playing.append(get_playing(innings[i][0]))
       result[teams[i]+"_innings_"+str(i+1)+"_batting"]=batting
+      result[teams[i]+"_innings_"+str(i+1)+"_playing"]=playing
       result[teams[1-i]+"_innings_"+str(i+1)+"_bowling"]=bowling
       result[teams[1-i]+"_innings_"+str(i+1)+"_fielding"]=fielding
   return result
@@ -157,4 +160,29 @@ def get_fielding(Inning_batting):
     #print(temp_list)
     return(temp_list)
 
-get_match("https://www.cricbuzz.com/live-cricket-scorecard/35612/mi-vs-rcb-1st-match-indian-premier-league-2021",["mi","rcb"])
+def get_playing(Inning_batting):
+    playing_info=[]
+    player={}
+    temp_list=[]
+    for b in Inning_batting:
+        name = b.find_all('a',class_="cb-text-link")
+        if name:
+            #player['name'] = str(name.get_text().split('(')[0]).strip()
+            if (len(name)==0):
+                temp_dict={}
+                player['name']=str(name.get_text().split('(')[0]).strip()
+                temp_dict[player['name']]=1
+                temp_dict["playing"]="yes"
+                temp_list.append(temp_dict)
+            else:
+                for i in range(len(name)):
+                    temp_dict={}
+                    player['name'] = str(name[i].get_text().split('(')[0]).strip()
+                    temp_dict[player['name']]=1
+                    temp_dict["playing"]="yes"
+                    temp_list.append(temp_dict)
+    #print(temp_list)
+    return(temp_list)
+
+
+# print(get_match("https://www.cricbuzz.com/live-cricket-scorecard/35617/csk-vs-dc-2nd-match-indian-premier-league-2021",["mi","rcb"]))
