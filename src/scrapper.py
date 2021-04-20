@@ -134,13 +134,13 @@ def get_fielding(Inning_batting):
                 y=dismissal.split("run out")[1].replace('(', '').replace(')', '').split("/")
                 if len(y)==1:
                     for a in y:
-                        if a in fielders:
+                        if a.strip() in fielders:
                             fielders[a.strip()]+=1
                         else:
                             fielders[a.strip()]=1
                 else:
                     for a in y:
-                        if a in fielders:
+                        if a.strip() in fielders:
                             fielders[a.strip()]+=0.5
                         else:
                             fielders[a.strip()]=0.5
