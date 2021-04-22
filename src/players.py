@@ -83,9 +83,8 @@ class Players(Teams):
         temp_list=set()
         for player in list1:
             #print(masterlist[player.split("_")[0]])
-            #print(player)
-            #print(player.split("_")[1])
-            temp_list.add(masterlist[player.split("_")[0]]+'_'+player.split("_")[1])
+            #print(masterlist[player.split("_")[0]]+'_'+player.split("_")[1])
+            temp_list.add(masterlist[player.split("_")[0].strip()]+'_'+player.split("_")[1].strip())
         print(len(list1),len(temp_list))
         list1=list(temp_list)
         return(list1)

@@ -46,7 +46,7 @@ for i in range(len(owners)):
         player_list.append(innings_sum)
         player_list.sort(reverse=True)
     owner_sum=O1.sum11(player_list)
-    #print(player_list)
+    print(player_list)
     temp_dict[owners[i]]=owner_sum
     #print(owner_sum)
 appendFile("../resources/points/owners/points.json", temp_dict)
