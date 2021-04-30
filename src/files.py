@@ -28,7 +28,7 @@ def appendFile(fileName,data):
         print("Error reading from file")
     try:
         f2=open(fileName,'w')
-        json.dump(existing_content,f2)
+        json.dump(existing_content,f2, sort_keys=True, indent=4)
         f2.close()
         return ("Written to file")
     except:
