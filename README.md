@@ -3,6 +3,8 @@ Fantasy League for IPL
 
 # Scoring Rules
 
+Scoring Rules for IPL
+
 
 ## Points Table
 
